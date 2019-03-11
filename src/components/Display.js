@@ -6,7 +6,6 @@ const Display = ({ displayValue }) => {
 	return (
 		<div>
 			<h1>{number.length ? number : '0'}</h1>
-			<p>{storedNumber}</p>
 		</div>
 	);
 };

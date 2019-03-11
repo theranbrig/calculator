@@ -5,25 +5,39 @@ import ClearButton from './ClearButton';
 import styled from 'styled-components';
 import Display from './Display';
 import { NumberContext } from './NumberProvider';
+import EqualButton from './EqualButton';
 
 const CalculatorStyles = styled.div`
+	background: #232323;
+	padding: 90px;
 	width: 60%;
-	margin-left: 20%;
+	margin-left: calc(20% - 90px);
 	display: grid;
 	grid-template-areas:
 		'display'
 		'numbers';
 	button {
 		width: 100%;
-		height: 50px;
+		height: 60px;
 		border-radius: 20px;
+		border: 3px solid #e27f60;
+		background-color: #41b3a3;
+		font-size: 2rem;
+		color: white;
 	}
 	.display {
 		grid-area: display;
+		h1 {
+			color: white;
+			font-size: 4rem;
+			margin: 0;
+			text-align: right;
+		}
 	}
 	.number-pad {
 		grid-area: numbers;
 		display: grid;
+		grid-gap: 20px;
 		grid-template-columns: repeat(4, 1fr);
 	}
 	.zero-button {
@@ -59,7 +73,7 @@ const Calculator = () => {
 					<CalculatorButton buttonValue={0} />
 				</div>
 				<CalculatorButton buttonValue={'.'} />
-				<FunctionButton buttonValue={'='} />
+				<EqualButton />
 			</div>
 		</CalculatorStyles>
 	);

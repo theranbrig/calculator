@@ -5,7 +5,7 @@ export const NumberContext = React.createContext();
 const NumberProvider = props => {
 	const [number, setNumber] = useState('');
 	const [storedNumber, setStoredNumber] = useState('');
-	const [functionType, setFunctionType] = useState('');
+	const [functionType, setFunctionType] = useState(null);
 
 	const getValue = num => {
 		let storedValue = number;
@@ -14,14 +14,14 @@ const NumberProvider = props => {
 		}
 	};
 
-	const setValue = num => {
+	const setValue = () => {
 		setStoredNumber(number);
 		setNumber('');
 	};
 
 	const clearValue = () => {
 		setNumber('');
-  };
+	};
 
 	const addFunction = () => {
 		setNumber(`${parseInt(number) + parseInt(storedNumber)}`);
@@ -29,6 +29,30 @@ const NumberProvider = props => {
 
 	const minusFunction = () => {
 		setNumber(`${parseInt(storedNumber) - parseInt(number)}`);
+	};
+
+	const doMath = () => {
+		switch (functionType) {
+			case '+':
+				addFunction();
+				break;
+			case '-':
+				setNumber(`${parseInt(storedNumber) - parseInt(number)}`);
+				break;
+			case '/':
+				setNumber(`${parseInt(storedNumber) / parseInt(number)}`);
+				break;
+			case '*':
+				setNumber(`${parseInt(number) * parseInt(storedNumber)}`);
+				break;
+			default:
+				break;
+		}
+	};
+
+	const setCalcFunction = type => {
+		setFunctionType(type);
+		setValue(number);
 	};
 
 	return (
@@ -42,7 +66,8 @@ const NumberProvider = props => {
 				setNumber,
 				addFunction,
 				minusFunction,
-				setFunctionType
+				setCalcFunction,
+				doMath
 			}}>
 			{props.children}
 		</NumberContext.Provider>
