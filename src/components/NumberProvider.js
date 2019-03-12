@@ -28,14 +28,14 @@ const NumberProvider = props => {
 	};
 
 	const handleBackButton = () => {
-		if (number !== '0') {
+		if (number !== '') {
 			let deletedNumber = number.slice(0, number.length - 1);
 			setNumber(deletedNumber);
 		}
 	};
 
 	const doMath = () => {
-		if (number) {
+		if (number && storedNumber) {
 			switch (functionType) {
 				case '+':
 					setStoredNumber(

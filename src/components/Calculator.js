@@ -23,7 +23,7 @@ const CalculatorStyles = styled.div`
 		height: 60px;
 		border-radius: 20px;
 		border: 3px solid white;
-		background-color: #41b3a3;
+		background-color: #4abdac;
 		font-size: 2rem;
 		color: white;
 		&:focus {
@@ -36,6 +36,7 @@ const CalculatorStyles = styled.div`
 		grid-area: display;
 		h1 {
 			font-size: 4rem;
+			color: white;
 		}
 	}
 	.number-pad {
