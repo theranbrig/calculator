@@ -3,11 +3,7 @@ import { NumberContext } from './NumberProvider';
 
 const EqualButton = ({ buttonValue }) => {
 	const { doMath } = useContext(NumberContext);
-	return (
-		<div className="button-div" onClick={() => doMath()}>
-			<button>{'='}</button>
-		</div>
-	);
+	return <button onClick={() => doMath()}>{'='}</button>;
 };
 
 export default EqualButton;

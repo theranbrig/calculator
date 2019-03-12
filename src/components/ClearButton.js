@@ -3,11 +3,7 @@ import { NumberContext } from './NumberProvider';
 
 const ClearButton = () => {
 	const { clearValue } = useContext(NumberContext);
-	return (
-		<div className="button-div">
-			<button onClick={() => clearValue()}>C</button>
-		</div>
-	);
+	return <button onClick={() => clearValue()}>C</button>;
 };
 
 export default ClearButton;

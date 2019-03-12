@@ -1,18 +1,21 @@
 import React, { useContext } from 'react';
-import CalculatorButton from './CalculatorButton';
+import CalculatorButton from './NumberButton';
 import FunctionButton from './FunctionButton';
 import ClearButton from './ClearButton';
 import styled from 'styled-components';
 import Display from './Display';
 import { NumberContext } from './NumberProvider';
 import EqualButton from './EqualButton';
+import BackButton from './BackButton';
+import NegativeButton from './NegativeButton';
 
 const CalculatorStyles = styled.div`
-	background: #232323;
+	background: #c38f9e;
 	padding: 90px;
 	width: 60%;
 	margin-left: calc(20% - 90px);
 	display: grid;
+	justify-items: center;
 	grid-template-areas:
 		'display'
 		'numbers';
@@ -20,12 +23,17 @@ const CalculatorStyles = styled.div`
 		width: 100%;
 		height: 60px;
 		border-radius: 20px;
-		border: 3px solid #e27f60;
+		border: 3px solid white;
 		background-color: #41b3a3;
 		font-size: 2rem;
 		color: white;
+		&:focus {
+			outline: none;
+		}
 	}
 	.display {
+		font-family: 'Old Standard TT', serif;
+		font-weight: 700;
 		grid-area: display;
 		h1 {
 			color: white;
@@ -37,8 +45,11 @@ const CalculatorStyles = styled.div`
 	.number-pad {
 		grid-area: numbers;
 		display: grid;
-		grid-gap: 20px;
+		grid-gap: 10px;
 		grid-template-columns: repeat(4, 1fr);
+		.button-div:focus {
+			outline: none;
+		}
 	}
 	.zero-button {
 		grid-column: 1/3;
@@ -54,8 +65,8 @@ const Calculator = () => {
 			</div>
 			<div className="number-pad">
 				<ClearButton />
-				<FunctionButton buttonValue={'%'} />
-				<FunctionButton buttonValue={'+/-'} />
+				<BackButton />
+				<NegativeButton />
 				<FunctionButton buttonValue={'/'} />
 				<CalculatorButton buttonValue={7} />
 				<CalculatorButton buttonValue={8} />

@@ -5,7 +5,7 @@ export const NumberContext = React.createContext();
 const NumberProvider = props => {
 	const [number, setNumber] = useState('');
 	const [storedNumber, setStoredNumber] = useState('');
-	const [functionType, setFunctionType] = useState(null);
+	const [functionType, setFunctionType] = useState('');
 
 	const getValue = num => {
 		let storedValue = number;
@@ -21,38 +21,54 @@ const NumberProvider = props => {
 
 	const clearValue = () => {
 		setNumber('');
+		setStoredNumber('');
+		setFunctionType('');
 	};
 
-	const addFunction = () => {
-		setNumber(`${parseInt(number) + parseInt(storedNumber)}`);
-	};
-
-	const minusFunction = () => {
-		setNumber(`${parseInt(storedNumber) - parseInt(number)}`);
+	const handleBackButton = () => {
+		if (number !== '0') {
+			let deletedNumber = number.slice(0, number.length - 1);
+			setNumber(deletedNumber);
+		}
 	};
 
 	const doMath = () => {
 		switch (functionType) {
 			case '+':
-				addFunction();
+				setStoredNumber(`${parseFloat(number) + parseFloat(storedNumber)}`);
 				break;
 			case '-':
-				setNumber(`${parseInt(storedNumber) - parseInt(number)}`);
+				setStoredNumber(`${parseFloat(storedNumber) - parseFloat(number)}`);
 				break;
 			case '/':
-				setNumber(`${parseInt(storedNumber) / parseInt(number)}`);
+				setStoredNumber(`${parseFloat(storedNumber) / parseFloat(number)}`);
 				break;
 			case '*':
-				setNumber(`${parseInt(number) * parseInt(storedNumber)}`);
+				setStoredNumber(`${parseFloat(number) * parseFloat(storedNumber)}`);
 				break;
 			default:
 				break;
 		}
+		setNumber('');
 	};
 
 	const setCalcFunction = type => {
-		setFunctionType(type);
-		setValue(number);
+		if (number) {
+			setFunctionType(type);
+			setValue();
+		}
+		if (storedNumber) {
+			setFunctionType(type);
+		}
+	};
+
+	const toggleNegative = () => {
+		if (number >= 0) {
+			setNumber(`-${number}`);
+		} else {
+			let positiveNumber = number.slice(1);
+			setNumber(positiveNumber);
+		}
 	};
 
 	return (
@@ -64,10 +80,11 @@ const NumberProvider = props => {
 				storedNumber,
 				setValue,
 				setNumber,
-				addFunction,
-				minusFunction,
 				setCalcFunction,
-				doMath
+				doMath,
+				handleBackButton,
+				toggleNegative,
+				functionType
 			}}>
 			{props.children}
 		</NumberContext.Provider>
