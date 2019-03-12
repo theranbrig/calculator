@@ -1,19 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CalculatorButton from './NumberButton';
 import FunctionButton from './FunctionButton';
 import ClearButton from './ClearButton';
 import styled from 'styled-components';
 import Display from './Display';
-import { NumberContext } from './NumberProvider';
 import EqualButton from './EqualButton';
 import BackButton from './BackButton';
 import NegativeButton from './NegativeButton';
 
 const CalculatorStyles = styled.div`
 	background: #c38f9e;
-	padding: 90px;
-	width: 60%;
-	margin-left: calc(20% - 90px);
+	padding: 60px;
+	max-width: 100%;
+	max-height: 100vh;
 	display: grid;
 	justify-items: center;
 	grid-template-areas:
@@ -36,10 +35,7 @@ const CalculatorStyles = styled.div`
 		font-weight: 700;
 		grid-area: display;
 		h1 {
-			color: white;
 			font-size: 4rem;
-			margin: 0;
-			text-align: right;
 		}
 	}
 	.number-pad {
@@ -57,10 +53,10 @@ const CalculatorStyles = styled.div`
 `;
 
 const Calculator = () => {
-	const { setValue, addFunction, minusFunction, setFunctionType } = useContext(NumberContext);
 	return (
 		<CalculatorStyles>
 			<div className="display">
+				<h1>CALC-U-LATER</h1>
 				<Display />
 			</div>
 			<div className="number-pad">

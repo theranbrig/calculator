@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 
 export const NumberContext = React.createContext();
 
@@ -15,8 +15,10 @@ const NumberProvider = props => {
 	};
 
 	const setValue = () => {
-		setStoredNumber(number);
-		setNumber('');
+		if (number.length < 10) {
+			setStoredNumber(number);
+			setNumber('');
+		}
 	};
 
 	const clearValue = () => {
@@ -33,23 +35,33 @@ const NumberProvider = props => {
 	};
 
 	const doMath = () => {
-		switch (functionType) {
-			case '+':
-				setStoredNumber(`${parseFloat(number) + parseFloat(storedNumber)}`);
-				break;
-			case '-':
-				setStoredNumber(`${parseFloat(storedNumber) - parseFloat(number)}`);
-				break;
-			case '/':
-				setStoredNumber(`${parseFloat(storedNumber) / parseFloat(number)}`);
-				break;
-			case '*':
-				setStoredNumber(`${parseFloat(number) * parseFloat(storedNumber)}`);
-				break;
-			default:
-				break;
+		if (number) {
+			switch (functionType) {
+				case '+':
+					setStoredNumber(
+						`${Math.round(`${(parseFloat(storedNumber) + parseFloat(number)) * 100}`) / 100}`
+					);
+					break;
+				case '-':
+					setStoredNumber(
+						`${Math.round(`${(parseFloat(storedNumber) - parseFloat(number)) * 1000}`) / 1000}`
+					);
+					break;
+				case '/':
+					setStoredNumber(
+						`${Math.round(`${(parseFloat(storedNumber) / parseFloat(number)) * 1000}`) / 1000}`
+					);
+					break;
+				case '*':
+					setStoredNumber(
+						`${Math.round(`${parseFloat(storedNumber) * parseFloat(number) * 1000}`) / 1000}`
+					);
+					break;
+				default:
+					break;
+			}
+			setNumber('');
 		}
-		setNumber('');
 	};
 
 	const setCalcFunction = type => {
@@ -63,11 +75,20 @@ const NumberProvider = props => {
 	};
 
 	const toggleNegative = () => {
-		if (number >= 0) {
-			setNumber(`-${number}`);
+		if (number) {
+			if (number >= 0) {
+				setNumber(`-${number}`);
+			} else {
+				let positiveNumber = number.slice(1);
+				setNumber(positiveNumber);
+			}
 		} else {
-			let positiveNumber = number.slice(1);
-			setNumber(positiveNumber);
+			if (storedNumber >= 0) {
+				setStoredNumber(`-${storedNumber}`);
+			} else {
+				let positiveNumber = storedNumber.slice(1);
+				setStoredNumber(positiveNumber);
+			}
 		}
 	};
 
