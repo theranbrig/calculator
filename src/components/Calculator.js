@@ -9,10 +9,9 @@ import BackButton from './BackButton';
 import NegativeButton from './NegativeButton';
 
 const CalculatorStyles = styled.div`
-	background: #c38f9e;
-	padding: 60px;
+	background-color: #4abdac;
 	max-width: 100%;
-	max-height: 100vh;
+	height: 100vh;
 	display: grid;
 	justify-items: center;
 	grid-template-areas:
@@ -20,23 +19,26 @@ const CalculatorStyles = styled.div`
 		'numbers';
 	button {
 		width: 100%;
-		height: 60px;
+		height: 80px;
 		border-radius: 20px;
 		border: 3px solid white;
-		background-color: #4abdac;
 		font-size: 2rem;
 		color: white;
+		font-family: 'Orbitron', serif;
+		background: #e17055;
 		&:focus {
 			outline: none;
 		}
 	}
 	.display {
-		font-family: 'Old Standard TT', serif;
+		font-family: 'Orbitron', serif;
 		font-weight: 700;
 		grid-area: display;
 		h1 {
 			font-size: 4rem;
 			color: white;
+			text-align: center;
+			margin: 40px 0;
 		}
 	}
 	.number-pad {
@@ -44,6 +46,8 @@ const CalculatorStyles = styled.div`
 		display: grid;
 		grid-gap: 10px;
 		grid-template-columns: repeat(4, 1fr);
+		padding: 0px 0px 30px;
+    width: 450px;
 		.button-div:focus {
 			outline: none;
 		}

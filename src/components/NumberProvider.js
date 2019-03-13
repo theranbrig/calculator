@@ -8,9 +8,8 @@ const NumberProvider = props => {
 	const [functionType, setFunctionType] = useState('');
 
 	const getValue = num => {
-		let storedValue = number;
-		if (!storedValue.includes('.') || num !== '.') {
-			setNumber(`${storedValue + num}`);
+		if ((!number.includes('.') || num !== '.') && (num !== 0 && number.charAt(0) !== '0')) {
+			setNumber(`${number + num}`);
 		}
 	};
 

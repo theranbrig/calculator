@@ -7,9 +7,7 @@ class App extends Component {
 	render() {
 		return (
 			<NumberProvider>
-				<div className="App">
-					<Calculator />
-				</div>
+				<Calculator />
 			</NumberProvider>
 		);
 	}

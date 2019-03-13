@@ -11,6 +11,7 @@ const DisplayStyles = styled.div`
 	width: 700px;
 	align-items: center;
 	border-radius: 20px;
+	background: #e17055;
 	h2,
 	p {
 		text-align: center;
@@ -21,12 +22,12 @@ const DisplayStyles = styled.div`
 		margin: 0;
 		text-align: right;
 		padding: 0px;
-		border-bottom: 2px solid white;
-		padding: 0 20px;
+		border-bottom: 4px solid white;
+		padding: 15px 20px;
 	}
-  p {
-    margin: 5px 0;
-  }
+	p {
+		margin: 5px 0;
+	}
 `;
 
 const Display = ({ displayValue }) => {
