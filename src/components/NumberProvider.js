@@ -7,20 +7,20 @@ const NumberProvider = props => {
 	const [storedNumber, setStoredNumber] = useState('');
 	const [functionType, setFunctionType] = useState('');
 
-	const getValue = num => {
+	const handleSetDisplayValue = num => {
 		if ((!number.includes('.') || num !== '.') && (num !== 0 && number.charAt(0) !== '0')) {
 			setNumber(`${number + num}`);
 		}
 	};
 
-	const setValue = () => {
+	const handleSetStoredValue = () => {
 		if (number.length < 10) {
 			setStoredNumber(number);
 			setNumber('');
 		}
 	};
 
-	const clearValue = () => {
+	const handleClearValue = () => {
 		setNumber('');
 		setStoredNumber('');
 		setFunctionType('');
@@ -30,6 +30,34 @@ const NumberProvider = props => {
 		if (number !== '') {
 			let deletedNumber = number.slice(0, number.length - 1);
 			setNumber(deletedNumber);
+		}
+	};
+
+	const handleSetCalcFunction = type => {
+		if (number) {
+			setFunctionType(type);
+			handleSetStoredValue();
+		}
+		if (storedNumber) {
+			setFunctionType(type);
+		}
+	};
+
+	const handleToggleNegative = () => {
+		if (number) {
+			if (number > 0) {
+				setNumber(`-${number}`);
+			} else {
+				let positiveNumber = number.slice(1);
+				setNumber(positiveNumber);
+			}
+		} else {
+			if (storedNumber > 0) {
+				setStoredNumber(`-${storedNumber}`);
+			} else {
+				let positiveNumber = storedNumber.slice(1);
+				setStoredNumber(positiveNumber);
+			}
 		}
 	};
 
@@ -63,48 +91,20 @@ const NumberProvider = props => {
 		}
 	};
 
-	const setCalcFunction = type => {
-		if (number) {
-			setFunctionType(type);
-			setValue();
-		}
-		if (storedNumber) {
-			setFunctionType(type);
-		}
-	};
-
-	const toggleNegative = () => {
-		if (number) {
-			if (number >= 0) {
-				setNumber(`-${number}`);
-			} else {
-				let positiveNumber = number.slice(1);
-				setNumber(positiveNumber);
-			}
-		} else {
-			if (storedNumber >= 0) {
-				setStoredNumber(`-${storedNumber}`);
-			} else {
-				let positiveNumber = storedNumber.slice(1);
-				setStoredNumber(positiveNumber);
-			}
-		}
-	};
-
 	return (
 		<NumberContext.Provider
 			value={{
-				getValue,
-				clearValue,
+				doMath,
+				functionType,
+				handleBackButton,
+				handleClearValue,
+				handleSetCalcFunction,
+				handleSetDisplayValue,
+				handleSetStoredValue,
+				handleToggleNegative,
 				number,
 				storedNumber,
-				setValue,
-				setNumber,
-				setCalcFunction,
-				doMath,
-				handleBackButton,
-				toggleNegative,
-				functionType
+				setNumber
 			}}>
 			{props.children}
 		</NumberContext.Provider>
