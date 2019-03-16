@@ -10,7 +10,7 @@ const Display = () => {
         {!number.length && !storedNumber ? '0' : number || storedNumber}
       </h2>
       <p className={storedNumber && storedNumber.length > 12 ? 'long-stored-display' : undefined}>
-        >{!storedNumber ? 'ENTER SOME NUMBERS' : `${storedNumber} ${functionType} ${number}`}
+        {!storedNumber ? 'ENTER SOME NUMBERS' : `${storedNumber} ${functionType} ${number}`}
       </p>
     </DisplayStyles>
   );
