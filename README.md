@@ -7,7 +7,8 @@ This is a project that I built to understand the basics of how React Context and
 Checkout the deployed version and Medium Tutorial below.
 
 [Medium Tutorial](https://medium.com/@theran.brigowatz/building-a-calculator-with-react-hooks-and-react-context-api-debcabbc5f54)
-[Calc-U-Later](https://calc-u-later.netlify.com/)
+
+[Calc-U-Later Netlify Deploy](https://calc-u-later.netlify.com/)
 
 ## Installation
 
@@ -19,3 +20,5 @@ npm start or yarn start
 ```
 
 Thanks for taking the time to check it out.
+
+You can learn more about me and what I do at https://theran.co.
